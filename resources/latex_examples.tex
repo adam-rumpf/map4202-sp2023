@@ -1,0 +1,106 @@
+% General layout
+\pdfoutput=1
+\documentclass[11pt]{article}
+\usepackage[margin=1.0in]{geometry}
+
+% Common mathematical packages (add more as needed)
+\usepackage{amsmath,amsfonts,amsthm,amssymb} % Mathematical typesetting and symbols
+\usepackage{enumerate} % Custom enumeration labels
+\usepackage{esint} % Better integral symbols
+\usepackage{graphicx} % Figure inclusion
+\usepackage{hyperref} % Hyperlinks for citations, references, and URLs (makes all inline references into hyperlinks by default)
+\usepackage[numbers,sort&compress]{natbib} % Citation styling
+\usepackage{listings} % Code and pseudocode inclusion
+\usepackage{placeins} % Float barriers
+\usepackage{slashbox} % Backslashes for corners of tables
+\usepackage{subcaption} % Captions for subfigures
+\usepackage{xcolor} % Text color
+
+%==============================================================================
+
+\begin{document}
+
+\noindent \textbf{\LaTeX\ Examples} \hfill Adam Rumpf
+
+\quad
+
+The following are some examples to show off how to typeset some common mathematical expressions. \LaTeX\ makes it easy to typeset mathematical symbols and equations, like $E = mc^2$. We can also have arrays of equations, like
+\begin{align}
+	\int_a^b f'(x) \, dx &= f(b) - f(a) \\ % The \, here just adds a bit of space between the f'(x) and the dx.
+	\frac{d}{dx} f(x) &:= \lim_{h \to 0} \frac{f(x+h) - f(x)}{h} \\
+	\int_a^b f(x) \, dx &:= \lim_{n \to \infty} \sum_{i=1}^n f(x_i^*) \, \Delta x_i \\
+	\frac{dP}{dt} &= rP \left( 1 - \frac{P}{K} \right) \\ % \left( and \right) creates a pair of parentheses whose size matches whatever is between them.
+	\label{eqn:green} \oint_C P \, dx + Q \, dy &= \iint_D \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) dA \\ % This equation is labeled, for later reference.
+	\zeta(s) &:= \sum_{n=1}^\infty \frac{1}{n^s} = \prod_{\text{$p$ prime}} \frac{1}{1 - p^{-s}} \\
+	\label{eqn:holder} \|f g\|_1 &\le \|f\|_p \|g\|_q \\ % \le is "less than or equal to"; \ge would be "greater than or equal to".
+	\mu \left( \bigcup_{k=1}^\infty E_k \right) &= \mu (E_1 \cup E_2 \cup E_3 \cup \dots) = \sum_{k=1}^\infty \mu(E_k) \\
+	\vec{u} \cdot \vec{v} &= \sum_{i=1}^n u_i v_i \\
+	\mathbf{x} &\gets \mathbf{x} - \gamma_n \nabla f(\mathbf{x}) \\ % \mathbf is boldface math font.
+	X &\sim \mathcal{N}(\mu,\sigma^2) \\ % \mathcal is caligraphic math font.
+	\mathbb{E}[X] &= \int_{-\infty}^\infty x \, f(x) \, dx \\ % \mathbb is blackboard bold math font.
+	A \times B &= \left\{ (x,y) \, \middle| \, x \in A, \, y \in B \right\} \\ % A \middle delimiter can be included between \left and \right.
+	\neg \big( \forall x, \, \exists y : p(x) \lor q(y) \big) &\iff \exists x : \forall y, \, \neg p(x) \land \neg q(y) \\
+	\mathrm{P} &\ne \mathrm{NP} \\ % \mathrm is Roman math font.
+	\chi_{\mathbb{Q}}(x) &= \left\{ % The piecewise definition is written by creating an array to hold the lines of the definition, surrounded by a left curly brace delimiter and an empty right delimiter.
+	\begin{array}{r l} % The "r l" arguments generate two columns: one right-aligned for the definition, and one left-aligned for the domain.
+		1 & \text{if $x \in \mathbb{Q}$} \\
+		0 & \text{if $x \notin \mathbb{Q}$}
+	\end{array}
+	\right. % The \right. here is just an empty right delimiter to match the left curly brace above.
+\end{align}
+
+You don't need to number every equation. For example, the Pythagorean Identities
+\begin{align*} % The star after the word "align" suppresses equation numbering.
+	\sin^2 x + \cos^2 x &= 1 \\
+	\tan^2 x + 1 &= \sec^2 x \\
+	1 + \cot^2 x &= \csc^2 x
+\end{align*} % Make sure to include a star at the end, as well.
+are un-numbered. But if you do include numbers you can refer back to them. For example, equation~(\ref{eqn:green}) is Green's Theorem, while equation~(\ref{eqn:holder}) is H\"older's Inequality (for H\"older conjugates~$p$ and~$q$). % Diacritical marks are usually included with a backslash operator. For example, \'a is an "a" with an acute accent, \`e is an "e" with a grave accent, \^i is an "i" with a circumflex, and \~n is an ene.
+
+We can also write vectors and matrices.
+\begin{align*}
+	\mathbf{A}_{m \times n} &=
+	\begin{bmatrix}
+		a_{11} & a_{12} & \cdots & a_{1n} \\
+		a_{21} & a_{22} & \cdots & a_{2n} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		a_{m1} & a_{m2} & \cdots & a_{mn}
+	\end{bmatrix}
+\end{align*}
+and here is a constrained minimization problem
+\begin{alignat}{2} % The 2 here means that there are 2 pairs of right/left alignments.
+	\label{eqn:cost} \min \quad& \sum_{ij \in \mathcal{A}} c_{ij} x_{ij} \\
+	\label{eqn:balance} \mathrm{s.t.} \quad& \sum_{j : ij \in \mathcal{A}} x_{ij} - \sum_{j : ji \in \mathcal{A}} x_{ji} = b_i &\qquad& \forall i \in \mathcal{N} \\ % \qquad is a horizontal spacer.
+	\label{eqn:capacity} & 0 \le x_{ij} \le u_{ij} && \forall ij \in \mathcal{A}
+\end{alignat}
+for minimizing flow cost~(\ref{eqn:cost}) subject to flow balance constraints~(\ref{eqn:balance}) and capacity constraints~(\ref{eqn:capacity}).
+
+\begin{proof}
+This is a proof. The proof environment just adds the word ``Proof'' to the beginning, and a square Q.E.D.\ symbol at the end. % Note that left and right quotation marks use separate characters (grave accent and apostrophe, respectively).
+\end{proof}
+
+\begin{table}[h] % The "h" tells LaTeX to try to place the table "here", as close as possible to where it appears in the source code. It may end up getting repositioned to make room for text. Other options include "t" for "top", "b" for "bottom", and "p" for a dedicated "page" containing only tables and figures.
+	\centering
+	\begin{tabular}{|r|r|r|r|r|r|r|r|r|} % Every column is right-aligned, and all are separated by a vertical bar "|".
+		\hline \backslashbox{$y$}{$x$} & -2.0 & -1.0 & 0.0 & 1.0 & 2.0 \\
+		\hline 2.0 & -0.01 & -0.13 &  0.00 &  0.13 &  0.01 \\
+		\hline 1.0 & -0.13 & -1.40 &  0.00 &  1.40 &  0.13 \\
+		\hline 0.0 & 0.00 &  0.00 &  0.00 &  0.00 &  0.00 \\
+		\hline -1.0 & 0.13 & 1.40 &  0.00 & -1.40 & -0.13 \\
+		\hline -2.0 & 0.01 &  0.13 &  0.00 & -0.13 & -0.01 \\
+		\hline
+	\end{tabular}
+	\caption{A table of values of the scalar field $f(x,y) = xy e^{-(x^2 + y^2)}$.}
+	\label{tab:field}
+\end{table}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.4\textwidth]{figures/surface.png}
+	\caption{The graph of the scalar field $f(x,y) = xy e^{-(x^2 + y^2)}$ on the domain $[-2,2] \times [-2,2]$.}
+	\label{fig:field}
+\end{figure}
+
+Figures and tables can also be referred to. Table~\ref{tab:field} displays a table of values of the scalar field $f(x,y) = xy e^{-(x^2 + y^2)}$, and Figure~\ref{fig:field} shows its graph.
+
+\end{document}
