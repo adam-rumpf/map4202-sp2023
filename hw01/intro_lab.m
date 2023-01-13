@@ -10,7 +10,7 @@
 %=============================================================================
 
 % Print a title line
-disp("MAP 4202 Homework 1\n")
+disp("MAP 4202 Homework 1" + newline)
 
 %=============================================================================
 % Part 2: Evaluating a batch of solutions to a standard form LP
@@ -45,7 +45,7 @@ best_sol = zeros(6, 1);
 % Display the best known solution
 disp("Best known solution:")
 disp(best_sol)
-disp(["Best objective value: ", num2str(best_obj)])
+disp("Best objective value: " + num2str(best_obj))
 
 %=============================================================================
 % Part 1: A function for evaluating a solution to a standard form LP
