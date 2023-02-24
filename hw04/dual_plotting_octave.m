@@ -12,6 +12,28 @@
 % Print a title line
 disp("MAP 4202 Homework 4\n")
 
+function y = lagrangian(p, x)
+    % Evaluates the Lagrangian relaxation of the primal nonlinear program
+    %
+    %   min  x(1)^2 + x(2)^2
+    %   s.t. x(1)   + x(2)  = 1
+    %           -1 <= x(1) <= 1
+    %           -1 <= x(2) <= 1
+    %
+    % Inputs:
+    %   p - penalty cost scalar
+    %   x - 2x1 primal solution vector
+    %
+    % Output:
+    %   The value of the relaxed objective with primal solution x and
+    %   penalty cost p.
+    
+    % Compute relaxed objective
+    y = x(1)^2 + x(2)^2 + p*(1 - x(1) - x(2));
+end
+
+%=============================================================================
+
 % Define the interval of dual variables to use
 num = 101; % number of dual variables to use
 dualvars = linspace(-3,3,num);
@@ -75,25 +97,3 @@ plot(dualvars, objmin)
 title("Relaxed Objective")
 xlabel("penalty cost")
 ylabel("relaxed objective")
-
-%=============================================================================
-
-function y = lagrangian(p, x)
-    % Evaluates the Lagrangian relaxation of the primal nonlinear program
-    %
-    %   min  x(1)^2 + x(2)^2
-    %   s.t. x(1)   + x(2)  = 1
-    %           -1 <= x(1) <= 1
-    %           -1 <= x(2) <= 1
-    %
-    % Inputs:
-    %   p - penalty cost scalar
-    %   x - 2x1 primal solution vector
-    %
-    % Output:
-    %   The value of the relaxed objective with primal solution x and
-    %   penalty cost p.
-    
-    % Compute relaxed objective
-    y = x(1)^2 + x(2)^2 + p*(1 - x(1) - x(2));
-end
