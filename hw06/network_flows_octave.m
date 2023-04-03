@@ -41,7 +41,7 @@ A = zeros(m, n);
 % Display the results
 disp("Optimal flow:")
 for i=1:n
-	disp([" x(", num2str(head(i)), ',', num2str(tail(i)), ") = ", ...
+	disp([" x(", num2str(tail(i)), ',', num2str(head(i)), ") = ", ...
 		num2str(x(i))])
 end
 disp(["Flow cost: ", num2str(obj)])

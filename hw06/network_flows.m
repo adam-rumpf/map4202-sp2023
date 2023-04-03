@@ -12,6 +12,9 @@
 % Print a title line
 disp("MAP 4202 Homework 6" + newline)
 
+% linprog options to suppress completion messages
+options = optimoptions('linprog', 'Display', 'none');
+
 % Read the data files
 ndata = csvread("nodes.csv");
 adata = csvread("arcs.csv");
@@ -36,12 +39,12 @@ A = zeros(m, n);
 %##############################################################################
 
 % Solve the network flows problem
-[x, obj] = linprog(c, [], [], A, b, zeros(n,1), u);
+[x, obj] = linprog(c, [], [], A, b, zeros(n,1), u, options);
 
 % Display the results
 disp("Optimal flow:")
 for i=1:n
-	disp(" x(" + num2str(head(i)) + ',' + num2str(tail(i)) + ") = " + ...
+	disp(" x(" + num2str(tail(i)) + ',' + num2str(head(i)) + ") = " + ...
 		num2str(x(i)))
 end
 disp("Flow cost: " + num2str(obj))
