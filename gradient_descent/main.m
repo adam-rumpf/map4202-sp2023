@@ -20,5 +20,5 @@ fp2 = @(x) [2, 1; 1, 20]*x - [5; 3];
 exact2 = [97/39; 1/39];
 
 %sols2 = graddescent(@(x) f2(x), @(x) fp2(x), [-3; -1], 10, 1.0);
-%showpath(@(x) f(x), sols2, [-4, 4], [-2, 2], "Gradient Descent, theta = 1.0", exact2);
+%showpath(@(x) f2(x), sols2, [-4, 4], [-2, 2], "Gradient Descent, theta = 1.0", exact2);
 %showgrad(@(x) f2(x), @(x) fp2(x), sols2);
