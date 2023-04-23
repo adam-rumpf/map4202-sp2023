@@ -1,0 +1,185 @@
+%========================================================================
+% Preamble (General)
+%========================================================================
+
+\documentclass{beamer}
+\usepackage{amsmath,amsfonts,amsthm,amssymb,mathrsfs} % Math packages
+\usepackage{graphicx,float,wrapfig} % Graphics inclusion
+\usepackage[scaled=1.0]{helvet} % Apply Helvetica font (with chosen text scale)
+\usepackage{xcolor} % Text color
+
+%========================================================================
+% Preamble (Beamer-Related)
+%========================================================================
+
+% -------------------------------
+% Select a theme
+% -------------------------------
+%\usetheme{Warsaw}
+%\usetheme{Rochester}
+%\usetheme{Madrid}
+%\usetheme{Pittsburgh}
+%\usetheme{Antibes}
+%\usetheme{Montpellier}
+%\usetheme{Berkeley}
+%\usetheme{PaloAlto}
+%\usetheme{Goettingen}
+%\usetheme{Marburg}
+%\usetheme{Hannover}
+\usetheme{Berlin}
+%\usetheme{Ilmenau}
+%\usetheme{Dresden}
+%\usetheme{Darmstadt}
+%\usetheme{Frankfurt}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Copenhagen}
+%\usetheme{Malmoe}
+
+% -------------------------------
+% Select a color theme
+% -------------------------------
+%\usecolortheme{seagull}
+%\usecolortheme{crane}
+\usecolortheme{default}
+%\usecolortheme[rgb={.4,0,0}]{structure} % Red colors
+%\usecolortheme[rgb={.2,0,0}]{structure} % Dark Red colors
+%\usecolortheme[rgb={.6,.5,.2}]{structure} % Yellow/Green colors
+%\usecolortheme[rgb={.15,.65,.1}]{structure} % Grass green
+
+% -------------------------------
+ % Select a font theme
+% -------------------------------
+\usefonttheme{structurebold}
+%\usefonttheme{structuresmallcapsserif}
+%\usefonttheme{structureitalicserif}
+%\usefonttheme{serif}
+\usefonttheme[onlymath]{serif} % Uses serif font for math text
+
+% -------------------------------
+ % Select a background color
+% -------------------------------
+%\setbeamertemplate{background canvas}[vertical shading][bottom=white,top=gray!30]
+%\setbeamertemplate{background canvas}[vertical shading][bottom=white,top=red!10!black!30]
+%\setbeamertemplate{background canvas}[vertical shading][bottom=white,top=green!20!black!30]
+%\setbeamertemplate{background canvas}[vertical shading][bottom=white,top=white]
+
+% -------------------------------
+% Select a color for math text
+% -------------------------------
+%\setbeamercolor{math text}{fg=red!80!black}
+% This command suppresses the navigation symbols at footline
+% comment the command below if you  want navigation symbols
+%\setbeamertemplate{navigation symbols}{}
+
+% -------------------------------
+% A macro to automatically generate section title slides
+% -------------------------------
+\AtBeginSection[]{
+\begin{frame}
+\vfill
+\centering
+%\begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+\begin{beamercolorbox}[sep=8pt,center,shadow=false,rounded=false]{title}
+%\usebeamerfont{title}\insertsectionhead\par%
+\usebeamerfont{title}\insertsection\par%
+\end{beamercolorbox}
+\vfill
+\end{frame}
+}
+
+%========================================================================
+% Preamble (Title Page)
+%========================================================================
+
+\title{Presentation Title}
+\author{Author Name}
+\institute{Author Institution}
+\date{\today}
+%\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{} % Suppress the navigation buttons
+
+%========================================================================
+% Slideshow
+%========================================================================
+
+\begin{document}
+
+%========================================================================
+\begin{frame}
+
+\titlepage
+
+\end{frame}
+
+%========================================================================
+\section[Intro]{Introduction} % [Abbreviated title to appear in header]{Full section title to appear on title slide}
+
+%========================================================================
+\begin{frame}{Introduction}
+
+\begin{enumerate}
+	\item Item 1
+	\item Item 2
+	\item Item 3
+	\item<2-> Item 4 (after a delay)
+	\item<3-> Item 5 (after another delay)
+\end{enumerate}
+
+\end{frame}
+
+%========================================================================
+\begin{frame}{Introduction}
+
+\begin{itemize}
+	\item Item 1
+	\item Item 2
+	\item<2-> Item 3 (all at once)
+	\item<2-> Item 4 (all at once)
+	\item<2-> Item 5 (all at once)
+\end{itemize}
+
+\end{frame}
+
+%========================================================================
+\begin{frame}{Introduction}
+
+\begin{itemize}
+	\item Item 1
+	\item Item 2 \pause
+	\item Item 3 (all at once)
+	\item Item 4 (all at once)
+	\item Item 5 (all at once)
+\end{itemize}
+
+\end{frame}
+
+%========================================================================
+\section[Math]{Mathematical Text}
+
+%========================================================================
+\begin{frame}{Calculus Definitions}
+
+\begin{itemize}
+	\item Sample math text
+	\begin{align*}
+		\frac{d}{dx} f(x) &= \lim_{h \to 0} \frac{f(x+h) - f(x)}{h} \\
+		\int_a^b f(x) \, dx &= \lim_{n \to \infty} \sum_{i=1}^n f(x_i^*) \, \Delta x_i
+	\end{align*}
+\end{itemize}
+
+\end{frame}
+
+%========================================================================
+\begin{frame}{Questions and Answers}
+
+\begin{itemize}
+	\item Example problem
+	\begin{align*}
+		1^3 + 2^3 + \dots + (n-1)^3 + n^3 &= \visible<2->{(1 + 2 + \dots + (n-1) + n)^2}
+	\end{align*}
+\end{itemize}
+
+\end{frame}
+
+\end{document}
